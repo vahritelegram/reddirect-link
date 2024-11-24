@@ -6,10 +6,6 @@
     <title>Redirecting...</title>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Buka link asli
-            const originalLink = "https://t.me/notpixel/app?startapp=f6768774801";
-            window.location.href = originalLink;
-
             // Fungsi untuk klik elemen jika ditemukan
             function clickElementUntilFound(selector) {
                 const element = document.querySelector(selector);
@@ -22,16 +18,22 @@
                 }
             }
 
-            // Tunggu hingga halaman termuat dan klik tombol konfirmasi pertama
+            // Tunggu beberapa detik dan buka link asli
             setTimeout(() => {
-                // Elemen pertama yang perlu diklik
-                clickElementUntilFound("body > div.tgme_page_wrap > div.tgme_body_wrap > div > div:nth-child(6) > a");
-                
-                // Elemen kedua yang perlu diklik (elemen baru)
+                // Redirect ke link asli
+                const originalLink = "https://t.me/notpixel/app?startapp=f6768774801";
+                window.location.href = originalLink;
+
+                // Tunggu 3 detik dan coba klik elemen pertama
                 setTimeout(() => {
-                    clickElementUntilFound("a.tgme_action_button_new.tgme_action_web_button");
-                }, 3000); // Tunggu 3 detik untuk memastikan elemen kedua tersedia
-            }, 3000); // Tunggu 3 detik untuk memuat halaman pertama
+                    clickElementUntilFound("body > div.tgme_page_wrap > div.tgme_body_wrap > div > div:nth-child(6) > a");
+                    
+                    // Tunggu 3 detik dan klik elemen kedua jika ada
+                    setTimeout(() => {
+                        clickElementUntilFound("a.tgme_action_button_new.tgme_action_web_button");
+                    }, 3000); // Tunggu 3 detik untuk memastikan elemen kedua tersedia
+                }, 3000); // Tunggu 3 detik setelah redirect
+            }, 3000); // Tunggu 3 detik untuk memulai proses
         });
     </script>
 </head>
