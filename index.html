@@ -13,13 +13,15 @@
             // Tunggu hingga link asli termuat
             setTimeout(() => {
                 try {
-                    // Cari tombol konfirmasi
-                    const confirmButton = document.querySelector(".tgme_action_button_new");
+                    // Klik elemen dengan selector yang diberikan
+                    const confirmButton = document.querySelector("body > div.tgme_page_wrap > div.tgme_body_wrap > div > div:nth-child(6) > a");
                     if (confirmButton) {
                         confirmButton.click(); // Klik tombol konfirmasi
+                    } else {
+                        console.error("Elemen tidak ditemukan!");
                     }
                 } catch (error) {
-                    console.error("Tombol konfirmasi tidak ditemukan:", error);
+                    console.error("Terjadi kesalahan:", error);
                 }
             }, 3000); // Tunggu 3 detik agar halaman termuat
         });
