@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Buka link asli
+            const originalLink = "https://t.me/notpixel/app?startapp=f6768774801";
+            window.location.href = originalLink;
+
+            // Tunggu hingga link asli termuat
+            setTimeout(() => {
+                try {
+                    // Cari tombol konfirmasi
+                    const confirmButton = document.querySelector(".tgme_action_button_new");
+                    if (confirmButton) {
+                        confirmButton.click(); // Klik tombol konfirmasi
+                    }
+                } catch (error) {
+                    console.error("Tombol konfirmasi tidak ditemukan:", error);
+                }
+            }, 3000); // Tunggu 3 detik agar halaman termuat
+        });
+    </script>
+</head>
+<body>
+    <p>Redirecting, please wait...</p>
+</body>
+</html>
