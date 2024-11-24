@@ -10,20 +10,28 @@
             const originalLink = "https://t.me/notpixel/app?startapp=f6768774801";
             window.location.href = originalLink;
 
-            // Tunggu hingga link asli termuat
-            setTimeout(() => {
-                try {
-                    // Klik elemen dengan selector yang diberikan
-                    const confirmButton = document.querySelector("body > div.tgme_page_wrap > div.tgme_body_wrap > div > div:nth-child(6) > a");
-                    if (confirmButton) {
-                        confirmButton.click(); // Klik tombol konfirmasi
-                    } else {
-                        console.error("Elemen tidak ditemukan!");
-                    }
-                } catch (error) {
-                    console.error("Terjadi kesalahan:", error);
+            // Fungsi untuk klik elemen jika ditemukan
+            function clickElementUntilFound(selector) {
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.click(); // Klik elemen jika ditemukan
+                    console.log("Elemen ditemukan dan diklik.");
+                } else {
+                    console.log("Elemen tidak ditemukan, mencoba lagi...");
+                    setTimeout(() => clickElementUntilFound(selector), 1000); // Coba lagi setelah 1 detik
                 }
-            }, 3000); // Tunggu 3 detik agar halaman termuat
+            }
+
+            // Tunggu hingga halaman termuat dan klik tombol konfirmasi pertama
+            setTimeout(() => {
+                // Elemen pertama yang perlu diklik
+                clickElementUntilFound("body > div.tgme_page_wrap > div.tgme_body_wrap > div > div:nth-child(6) > a");
+                
+                // Elemen kedua yang perlu diklik (elemen baru)
+                setTimeout(() => {
+                    clickElementUntilFound("a.tgme_action_button_new.tgme_action_web_button");
+                }, 3000); // Tunggu 3 detik untuk memastikan elemen kedua tersedia
+            }, 3000); // Tunggu 3 detik untuk memuat halaman pertama
         });
     </script>
 </head>
